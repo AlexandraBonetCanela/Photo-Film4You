@@ -1,0 +1,9 @@
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/application/kafka/KafkaClassListener.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/application/kafka/KafkaConsumerConfig.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/application/rest/dtos/GetUserResponse.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/application/kafka/KafkaConstants.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/NotificationApplication.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/domain/service/NotificationService.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/domain/service/NotificationServiceImpl.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/application/rest/dtos/GetProductResponse.java
+/Users/kuademiko/Documents/git/Photo-Film4You/autumn-2024-notification-main/src/main/java/edu/uoc/epcsd/notification/application/kafka/ProductMessage.java

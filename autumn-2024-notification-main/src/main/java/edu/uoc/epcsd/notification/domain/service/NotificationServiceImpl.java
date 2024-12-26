@@ -5,10 +5,12 @@ import edu.uoc.epcsd.notification.application.rest.dtos.GetProductResponse;
 import edu.uoc.epcsd.notification.application.rest.dtos.GetUserResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Log4j2
 @Service
@@ -25,6 +27,11 @@ public class NotificationServiceImpl implements NotificationService {
 
             // TODO: Use RestTemplate with the above userServiceUrl to query the User microservice in order to get the users that have an alert for the specified product (the date specified in the parameter may be the actual date: LocalDate.now()).
             //  Then simulate the email notification for the alerted users by logging a line with INFO level for each user saying "Sending an email to user " + the user fullName
+        ResponseEntity<GetProductResponse> productResponse = new RestTemplate().getForEntity(productServiceUrl, GetProductResponse.class, productMessage.getProductId());
+        GetUserResponse[] userResponse = new RestTemplate().getForObject(userServiceUrl, GetUserResponse[].class, productResponse.getBody().getId(), LocalDate.now());
+        for(GetUserResponse user: userResponse) {
+            log.info("Sending an email to user" + user.getFullName());
+        }
 
     }
 }

@@ -49,10 +49,13 @@ public class ProductRESTController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Product>> findProductsByCriteria(FindProductsByCriteria findProductsCriteria) {
         log.trace("findProductsByCriteria");
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call the corresponding productService method
+        List<Product> filteredProducts = productService.findProductsByExample(Product.builder()
+                .categoryId(findProductsCriteria.getCategoryId())
+                .name(findProductsCriteria.getName()).build());
+        return ResponseEntity.ok().body(filteredProducts);
     }
 
     @PostMapping
@@ -85,9 +88,17 @@ public class ProductRESTController {
     @DeleteMapping("/{productId}")
     public ResponseEntity<Boolean> deleteProduct(@PathVariable @NotNull Long productId) {
         log.trace("deleteProduct");
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call the corresponding productService method
+        log.trace("Delete product with Id: " + productId);
+
+        try {
+            productService.deleteProduct(productId);
+            return ResponseEntity.ok(true);
+
+        } catch (IllegalArgumentException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The specified product id " + productId + " does not exist.", e);
+        }
     }
 }

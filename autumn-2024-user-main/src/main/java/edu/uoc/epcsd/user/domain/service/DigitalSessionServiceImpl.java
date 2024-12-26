@@ -25,9 +25,9 @@ public class DigitalSessionServiceImpl implements DigitalSessionService {
 
     @Override
 	public List<DigitalSession> findDigitalSession(Long userId) {
-		return null;
         // TODO: add the code for the missing system operations here:
         // call digitalSessionRepository method
+		return digitalSessionRepository.findDigitalSession(userId);
 	}
     
     @Override
@@ -37,24 +37,32 @@ public class DigitalSessionServiceImpl implements DigitalSessionService {
 
 	@Override
 	public Long addDigitalSession(DigitalSession digitalSession) {
-		return null;
+
         // TODO: add the code for the missing system operations here:
         // call digitalSessionRepository method
-		
+		return digitalSessionRepository.addDigitalSession(digitalSession);
 	}
 
 	@Override
 	public Long updateDigitalSession(Long digitalSessionId, CreateDigitalSessionRequest updateDigitalSessionRequest) {
-		return digitalSessionId;
-       
+
         // TODO: add the code for the missing system operations here:
         // search digitalSession by id, get data request and call digitalSessionRepository method
+		digitalSessionRepository.findDigitalSessionById(digitalSessionId).ifPresent(session -> {
+			session.setDescription(updateDigitalSessionRequest.getDescription());
+			session.setLink(updateDigitalSessionRequest.getLink());
+			session.setLocation(updateDigitalSessionRequest.getLocation());
+			digitalSessionRepository.updateDigitalSession(session);
+		});
+
+		return digitalSessionId;
 	}
 
 	@Override
 	public void dropDigitalSession(Long id) {
         // TODO: add the code for the missing system operations here:
-        // search if it exists and call digitalSessionRepository method		
+        // search if it exists and call digitalSessionRepository method
+		digitalSessionRepository.dropDigitalSession(DigitalSession.builder().id(id).build());
 	}
 	
 }

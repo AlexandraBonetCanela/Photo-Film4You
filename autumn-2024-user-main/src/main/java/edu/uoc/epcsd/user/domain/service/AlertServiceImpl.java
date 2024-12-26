@@ -33,16 +33,15 @@ public class AlertServiceImpl implements AlertService {
 
     @Override
     public List<Alert> findAlertsByProductAndDate(Long productId, LocalDate availableOnDate) {
-		return null;
         // TODO: add the code for the missing system operations here:
-        // call the corresponding alertRepository method
+        return alertRepository.findAlertsByProductAndDate(productId, availableOnDate);
     }
 
     @Override
     public List<Alert> findAlertsByUserAndInterval(Long userId, LocalDate fromDate, LocalDate toDate) {
-		return null;
         // TODO: add the code for the missing system operations here:
         // call the corresponding alertRepositoruy method
+        return alertRepository.findAlertsByUserAndInterval(userId, fromDate, toDate);
 	}
 
     public Long createAlert(Alert alert) {

@@ -47,10 +47,14 @@ public class CategoryRESTController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Category>> findCategoriesByCriteria(@NotNull FindCategoriesByCriteria findCategoriesCriteria) {
         log.trace("findCategoriesByCriteria");
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call the corresponding categoryService method
+        List<Category> filteredCategories = categoryService.findCategoriesByExample(Category.builder()
+                .parentId(findCategoriesCriteria.getParentId())
+                .name(findCategoriesCriteria.getName())
+                .description(findCategoriesCriteria.getDescription()).build());
+        return ResponseEntity.ok().body(filteredCategories);
     }
 
     @PostMapping

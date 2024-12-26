@@ -49,20 +49,21 @@ public class AlertRESTController {
     @ResponseStatus(HttpStatus.OK)
     public List<Alert> getAlertsByProductAndDate(@RequestParam @NotNull Long productId, @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate availableOnDate) {
         log.trace("getAlertsByProductAndDate");
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call the corresponding alertservice method
+        return alertService.findAlertsByProductAndDate(productId, availableOnDate);
     }
 
     @GetMapping("/byUserAndInterval")
     @ResponseStatus(HttpStatus.OK)
     public List<Alert> getAlertsByUserAndInterval(@RequestParam @NotNull Long userId, @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate, @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
         log.trace("getAlertsByUserAndInterval");
-		return null;
+
 
         // TODO: add the code for the missing system operations here:
-        // call the corresponding alertservice method
+        return alertService.findAlertsByUserAndInterval(userId, fromDate, toDate);
+
     }
 
     @PostMapping

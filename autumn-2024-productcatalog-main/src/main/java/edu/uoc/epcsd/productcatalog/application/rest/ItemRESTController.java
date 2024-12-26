@@ -47,10 +47,17 @@ public class ItemRESTController {
 
     @PatchMapping("/{serialNumber}")
     public ResponseEntity<Item> setOperational(@PathVariable @NotBlank String serialNumber, @RequestBody @NotNull boolean operational) {
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call the corresponding itemService method
+
+        try {
+            log.trace("setOperational");
+            Item item = itemService.setOperational(serialNumber, operational);
+            return ResponseEntity.ok().body(item);
+        } catch (IllegalArgumentException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The specified serialNumber " + serialNumber + " does not belong to any item.", e);
+        }
     }
 
     @PostMapping

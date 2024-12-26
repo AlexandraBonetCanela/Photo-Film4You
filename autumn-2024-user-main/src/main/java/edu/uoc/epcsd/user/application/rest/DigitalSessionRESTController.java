@@ -44,27 +44,42 @@ public class DigitalSessionRESTController {
     @PostMapping("/addDigital")
     public ResponseEntity<Long> addDigitalSession(@RequestBody @Valid CreateDigitalSessionRequest createDigitalSessionRequest) {
         log.trace("addDigitalSession");
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // get data request and call digitalSessionService method
+
+        Long digitalSessionId = digitalSessionService.addDigitalSession(DigitalSession.builder()
+                .description(createDigitalSessionRequest.getDescription())
+                .location(createDigitalSessionRequest.getLocation())
+                .link(createDigitalSessionRequest.getLink())
+                .userId(createDigitalSessionRequest.getUserId())
+                .build());
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(digitalSessionId)
+                .toUri();
+        return ResponseEntity.created(uri).body(digitalSessionId);
     }
 
     @PostMapping("/updateDigital/{digitalSessionId}")
     public ResponseEntity<Boolean> updateDigitalSession(@PathVariable @NotNull Long digitalSessionId, @RequestBody @Valid CreateDigitalSessionRequest updateDigitalSessionRequest) {
         log.trace("updateDigitalSession");
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call digitalSessionService method
+        digitalSessionService.updateDigitalSession(digitalSessionId, updateDigitalSessionRequest);
+        return ResponseEntity.ok(true);
+
     }
 
     @PostMapping("/dropDigital/{digitalSessionId}")
     public ResponseEntity<Boolean> dropDigitalSession(@PathVariable @NotNull Long digitalSessionId) {
         log.trace("dropDigitalSession");
-		return null;
  
         // TODO: add the code for the missing system operations here:
         // call digitalSessionService method
+        digitalSessionService.dropDigitalSession(digitalSessionId);
+        return ResponseEntity.ok(true);
     }    
 }

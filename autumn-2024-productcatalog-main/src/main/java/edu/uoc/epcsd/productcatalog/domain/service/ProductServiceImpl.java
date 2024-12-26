@@ -39,5 +39,6 @@ public class ProductServiceImpl implements ProductService {
 
         // TODO: add the code for the missing system operations here:
         // find the product and call the corresponding productRepository method
+        findProductById(id).ifPresent(productRepository::deleteProduct);
     }
 }

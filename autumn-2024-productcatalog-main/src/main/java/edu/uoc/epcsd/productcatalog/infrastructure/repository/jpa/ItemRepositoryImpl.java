@@ -25,10 +25,11 @@ public class ItemRepositoryImpl implements ItemRepository {
 
     @Override
     public Optional<Item> findBySerialNumber(String serialNumber) {
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // call SpringDataItemRepository method
+        return jpaRepository.findItemEntityBySerialNumber(serialNumber)
+                .map(ItemEntity::toDomain);
     }
 
     @Override

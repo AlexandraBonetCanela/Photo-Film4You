@@ -1,5 +1,6 @@
 package edu.uoc.epcsd.productcatalog.domain.service;
 
+import edu.uoc.epcsd.productcatalog.application.rest.request.FindCategoriesByCriteria;
 import edu.uoc.epcsd.productcatalog.domain.Category;
 
 import java.util.List;

@@ -48,11 +48,15 @@ public class ItemServiceImpl implements ItemService {
     }
 
     public Item setOperational(String serialNumber, boolean operational) {
-		return null;
 
         // TODO: add the code for the missing system operations here:
         // search item with itemRepository method and change status
 
+        ItemStatus status = operational? ItemStatus.OPERATIONAL : ItemStatus.NON_OPERATIONAL;
+        return findBySerialNumber(serialNumber).map(item -> {
+            item.setStatus(status);
+            return itemRepository.save(item);
+        }).orElseThrow(() -> new IllegalArgumentException("Item with serial number " + serialNumber + " not found"));
     }
 
     @Override

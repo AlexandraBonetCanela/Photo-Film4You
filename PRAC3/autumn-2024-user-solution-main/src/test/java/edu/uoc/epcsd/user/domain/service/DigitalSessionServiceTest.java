@@ -2,7 +2,6 @@ package edu.uoc.epcsd.user.domain.service;
 
 import edu.uoc.epcsd.user.application.rest.response.GetUserResponseTest;
 import edu.uoc.epcsd.user.domain.repository.DigitalSessionRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,7 +19,6 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 
 @ExtendWith(MockitoExtension.class)
